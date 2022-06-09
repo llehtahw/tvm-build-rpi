@@ -20,7 +20,9 @@ sed -i \
     -e 's/USE_OPENCL OFF/USE_OPENCL ON/' \
     -e 's/USE_CPP_RPC OFF/USE_CPP_RPC ON/' \
     build.tvm.rpi/config.cmake
-cmake --toolchain $PWD/aarch64.toolchain.cmake -B ./build.tvm.rpi -S ./tvm -G Ninja -DCMAKE_BUILD_TYPE=Release
+cmake --toolchain $PWD/aarch64.toolchain.cmake -B ./build.tvm.rpi -S ./tvm -G Ninja \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DCMAKE_BUILD_RPATH='$ORIGIN;$ORIGIN/../lib'
 cmake --build build.tvm.rpi -j$(($(nproc))) -t tvm_rpc
 cmake -E copy_if_different build.tvm.rpi/tvm_rpc install.rpi/bin
 cmake -E copy_if_different build.tvm.rpi/libtvm_runtime.so install.rpi/lib
