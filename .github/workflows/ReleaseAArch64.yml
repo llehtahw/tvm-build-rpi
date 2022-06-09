@@ -15,7 +15,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     container:
-      image: azqaz/tvm-build-rpi:crosspi
+      image: azqaz/tvm-build-rpi:crossrpi
 
     steps:
       - uses: actions/checkout@v3
