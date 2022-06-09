@@ -1,0 +1,12 @@
+FROM ubuntu:22.04
+
+RUN apt update \
+    && apt -y install --no-install-recommends git make python3-pip llvm-dev g++ \
+    libvulkan-dev spirv-headers spirv-tools opencl-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN pip3 install cmake ninja cython
+
+ADD tvm/ build_host.sh /build/tvm/
+
+RUN cd /build && sh tvm/build_host.sh
