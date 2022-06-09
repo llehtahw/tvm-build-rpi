@@ -3,11 +3,7 @@ name: CI
 
 on:
   push:
-    branches: [ "main" ]
-    paths:
-      - tvm
-      - build_rpi_runtime.sh
-      - aarch64.toolchain.cmake
+    tags: [ "*" ]
 
   workflow_dispatch:
 
