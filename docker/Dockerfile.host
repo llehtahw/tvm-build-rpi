@@ -5,7 +5,7 @@ RUN apt update \
     libvulkan-dev spirv-headers spirv-tools opencl-dev \
     && rm -rf /var/lib/apt/lists/*
 
-RUN pip3 install cmake ninja cython xgboost
+RUN pip3 install cmake ninja cython xgboost==1.5.0
 
 ADD tvm/ build_host.sh /build/tvm/
 
