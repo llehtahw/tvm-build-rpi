@@ -16,5 +16,5 @@ cmake --build . -j$(($(nproc)))
 cd ..
 make cython
 cd python
-python3 python/setup.py install
+python3 setup.py install
 rm ../build -rf
