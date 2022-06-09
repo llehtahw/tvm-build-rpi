@@ -2,7 +2,8 @@ FROM debian:bullseye
 
 RUN dpkg --add-architecture arm64
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
-    && apt-get -y install --no-install-recommends git python3-pip llvm g++-aarch64-linux-gnu libvulkan-dev libvulkan-dev:arm64 spirv-headers \
+    && apt-get -y install --no-install-recommends git python3-pip llvm g++-aarch64-linux-gnu libvulkan-dev \
+    libvulkan-dev:arm64 spirv-headers opencl-dev:arm64 \
     && rm -rf /var/lib/apt/lists/*
 RUN pip3 install cmake ninja
 
