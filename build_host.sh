@@ -13,8 +13,6 @@ sed -i \
 
 cmake .. -G Ninja -DCMAKE_BUILD_TYPE=Release
 cmake --build . -j$(($(nproc)))
-cd ..
-make cython
-cd python
-python3 setup.py install
-rm ../build -rf
+cd ../python
+python3 setup.py develop
+rm ../build/CMakeFiles -rf
