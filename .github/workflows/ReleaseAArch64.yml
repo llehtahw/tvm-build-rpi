@@ -1,11 +1,8 @@
-
 name: CI
 
 on:
   push:
     tags: [ "*" ]
-
-  workflow_dispatch:
 
 jobs:
   build:
@@ -19,10 +16,12 @@ jobs:
           submodules: 'recursive'
       - run: |
           sh build_rpi_runtime.sh
+          apt update && apt install zip -y
+          cd install.rpi
+          zip -9 ../aarch64.zip */
+
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
           files: |
-            install.rpi/*
-
-      
+            *.zip
