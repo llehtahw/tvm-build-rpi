@@ -1,7 +1,7 @@
 FROM ubuntu:22.04
 
 RUN apt update \
-    && apt -y install --no-install-recommends git make python3-pip llvm-dev g++ \
+    && apt -y install --no-install-recommends git make python3-pip python3-dev llvm-dev g++ \
     libvulkan-dev spirv-headers spirv-tools opencl-dev \
     && rm -rf /var/lib/apt/lists/*
 
