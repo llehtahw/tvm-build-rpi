@@ -1,0 +1,32 @@
+
+name: CI
+
+on:
+  push:
+    branches: [ "main" ]
+    paths:
+      - tvm
+      - build_rpi_runtime.sh
+      - aarch64.toolchain.cmake
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: azqaz/tvm-build-rpi:crosspi
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: 'recursive'
+      - run: |
+          sh build_rpi_runtime.sh
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            install.rpi/*
+
+      
