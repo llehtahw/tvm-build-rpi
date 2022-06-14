@@ -5,7 +5,8 @@ mkdir -p build.tvm.rpi build.spirv-tools.rpi install.rpi
 # SPIRV-Tools
 [ -e ./SPIRV-Tools/external/SPIRV-Headers ] || ln -s ../../SPIRV-Headers SPIRV-Tools/external/
 
-cmake --toolchain $PWD/aarch64.toolchain.cmake -S ./SPIRV-Tools -B ./build.spirv-tools.rpi -G Ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=install.rpi
+cmake --toolchain $PWD/aarch64.toolchain.cmake -S ./SPIRV-Tools -B ./build.spirv-tools.rpi -G Ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=install.rpi \
+    -DCMAKE_C_FLAGS="-march=armv8-a -mtune=cortex-a72" -DCMAKE_CXX_FLAGS="-march=armv8-a -mtune=cortex-a72"
 cmake --build build.spirv-tools.rpi -j$(($(nproc)))
 cmake --build build.spirv-tools.rpi -t install
 
